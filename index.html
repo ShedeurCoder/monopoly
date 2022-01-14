@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monopoly tools</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    
+    <section id="money">
+        <h1>Money</h1>
+        <div class="col-xs-12">
+            <h2>Bank:</h2>
+            <h3 id="bankMoney">$17580</h3>
+            <label>Give: <input type="number" id="bankGiveAmount"></label>
+            <button type="button" onclick="bank2Chiss()">To chissy</button> <button type="button" onclick="bank2Bib()">To bibo</button>
+        </div>
+        <div class="col-md-6">
+            <h2>Chissy:</h2>
+            <h3 id="chissyMoney">$1500</h3>
+            <label>Give: <input type="number" id="chissyGiveAmount"></label>
+            <button type="button" onclick="chiss2Bank()">To the bank</button> <button type="button" onclick="chiss2Bib()">To bibo</button>
+        </div>
+        <div class="col-md-6">
+            <h2>Bibo:</h2>
+            <h3 id="biboMoney">$1500</h3>
+            <label>Give: <input type="number" id="biboGiveAmount"></label>
+            <button type="button" onclick="bib2Chiss()">To chissy</button> <button type="button" onclick="bib2Bank()">To the bank</button>
+        </div>
+    </section>
+    <section id="cards">
+        <h1>Cards</h1>
+        <img src="https://i.imgur.com/pHQoMNF.jpeg" alt="Chance card" width="300px" onclick="showChance()">
+        <img src="https://i.imgur.com/QwnTwZt.jpg" alt="Community chest" width="300px" onclick="showCc()">
+
+        <h2 id="outcome"></h2>
+
+        <script>
+            var chance = ["Advance to Boardwalk", 
+            "Advance to Go. Collect $200",
+            "Advance to Illinois Avenue. If you pass Go, collect $200",
+            "Advance to St. Charles Place. If you pass Go, collect $200",
+            "Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay wonder twice the rental in which they are entitled",
+            "Advance to the nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner ten times total rolled",
+            "Bank pays you dividend of $50",
+            "Get out of jail free card",
+            "Go back 3 spaces",
+            "Go to Jail. Go directly to Jail. Do not pass Go, do not collect $200",
+            "Make general repairs on all your properties. Pay $25 for each house and $100 for each hotel",
+            "Pay poor tax of $15",
+            "Advance to Reading Railroad. If you pass Go, collect $200",
+            "You have been elected Chairman of the board. Pay each player $50",
+            "Your building loan matures. Collect $150",
+            "You have won a crossword competition. Collect $100"]
+            var cc = ["Advance to Go. Collect $200",
+            "Bank error in your favor. Collect $200",
+            "Doctor's fee. Pay $50",
+            "From sale of stock you get $50",
+            "Get out of Jail free card",
+            "Go to jail. Go directly to Jail. Do not pass Go, do not collect $200",
+            "Holiday fund matures. Collet $100",
+            "Income tax refund. Collect $100",
+            "It's your birthday. Collect $10 from each player",
+            "Life insurance matures. Collect $100",
+            "Pay hospital fees of $100",
+            "Pay school fees of $50",
+            "Recieve $25 consultancy fee",
+            "You are assesed for street repair. Pay $40 for every house and $115 for every hotel",
+            "You have won second prize in a beauty contest. Collect $10",
+            "You inherit $100"]
+            const shuffleArray = array => {
+                for (let i = array.length -1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    const temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+                return array;
+            };
+            chance = shuffleArray(chance);
+            cc = shuffleArray(cc);
+            function showChance() {
+                var frontchance = chance[0];
+                document.getElementById("outcome").innerHTML = "Chance: " + frontchance;
+                chance.splice(0, 1);
+                chance.push(frontchance);
+            }
+            function showCc() {
+                var frontcc = cc[0];
+                document.getElementById("outcome").innerHTML = "Community Chest: " + frontcc;
+                cc.splice(0, 1);
+                cc.push(frontcc);
+            }
+        </script>
+    </section>
+
+<script src="main.js"></script>
+</body>
+</html>
